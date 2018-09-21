@@ -5,18 +5,31 @@
 -->
 
 <!--
-  もしログインしているならば...
+もしログインしているならば...
 -->
 <% if logged_in? %>
 <p>ログイン完了ユーザ:   <%= current_user.name %>  </p>
+<div class="row">
+  <aside class="col-md-4">
+    <%= form_for(@tweet) do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, class: 'form-control', rows: 5 %>
+    </div>
+    <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </aside>
+  <div class="col-xs-8">
+    <%= render 'tweets/tweets', tweets: @tweets %>
+  </div>
+</div>
 
 <!--
-  もしログインしていないならば...
+もしログインしていないならば...
 -->
 <% else %>
 <div class="center jumbotron">
   <div class="text-center">
-    <h1>Welcome to the Microposts</h1>
+    <h1>Welcome to the tweets</h1>
     <h3>以下からユーザ登録を実行してください.</h3>
     <!-- signup_pathは, (prefix)_pathの形です -->
     <!-- そこにリンクを飛ばします -->

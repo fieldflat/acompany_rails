@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tweets = @user.tweets.order('created_at DESC').page(params[:page])
     #render 'show(アクション名)'が略されている.
   end
 
