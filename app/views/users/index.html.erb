@@ -1,0 +1,18 @@
+<h1>Users#index</h1>
+<p>Find me in app/views/users/index.html.erb</p>
+<p>新規作成はコチラ↓</p>
+<%= link_to 'ユーザ登録', signup_path, class: 'btn btn-lg btn-primary' %>
+<p></p>
+<p><%= render 'users', users: @users %></p> <!-- ここでrenderされている！！！ -->
+<% @user.each do |user| %>
+<i> <a href="https://www.google.co.jp/"> <%= user.id %> </a> </i>
+<i> <%= user.email %> </i>
+<i> <%= user.name %> </i>
+<i> <%= user.password_digest %> </i>
+<br>
+<% end %>
+
+<!--
+%= ... 実際に画面に出力する.
+% ... each, if文などの条件の時に使用する.
+-->
