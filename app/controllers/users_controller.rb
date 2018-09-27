@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show]
   def index
-    @users = User.all.page(params[:page])
+    @users = User.all.page(params[:page]).per(10)
   end
 
   def show
@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
     # @user.saveでデータが保存される(コンソールで実行するときも同じだよね).
     if @user.save
+      log_in(@user) #これを書かないと:idが付与されないため, これを書きましょう.
       flash[:success] = 'ユーザを登録しました。'
       redirect_to @user
       # redirect_to @userは,
@@ -30,6 +31,16 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end
+  end
+
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings.page(params[:page])
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers.page(params[:page])
   end
 
   private

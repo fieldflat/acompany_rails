@@ -1,7 +1,3 @@
-<h1>ユーザーの登録に成功しました</h1>
-<h3>Users#show</h3>
-<p>Find me in app/views/users/show.html.erb</p>
-
 <div class="row">
  <aside class="col-xs-4">
    <div class="panel panel-default">
@@ -20,6 +16,6 @@
      <li class="<%= 'active' if current_page?(followings_user_path(@user)) %>"><%= link_to followings_user_path(@user) do %>Followings <% end %></li>
      <li class="<%= 'active' if current_page?(followers_user_path(@user)) %>"><%= link_to followers_user_path(@user) do %>Followers <% end %></li>
    </ul>
-   <%= render 'tweets/tweets', tweets: @tweets %>
+   <%= render 'users', users: @followings %>
  </div>
 </div>
