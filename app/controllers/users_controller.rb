@@ -43,6 +43,12 @@ class UsersController < ApplicationController
     @followers = @user.followers.page(params[:page])
   end
 
+  def favorites
+    @user =  User.find(params[:id])
+    @favorites = @user.favs.page(params[:page])
+  end
+
+
   private
 
   # new.html.erbから送信されてきた(POSTされてきた)データは, paramsに格納されている.

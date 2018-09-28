@@ -11,6 +11,7 @@
       <div>
         <p><%= tweet.content %></p>
       </div>
+      <%= render 'favorites/fav_button', tweet: tweet %>
       <div>
         <% if current_user == tweet.user %>
         <%= link_to "Delete", tweet, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>

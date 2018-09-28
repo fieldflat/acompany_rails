@@ -1,0 +1,11 @@
+<% if tweet.faving?(current_user) %>
+  <%= form_for(tweet.favorites.find_by(user_id: current_user.id), html: { method: :delete }) do |f| %>
+    <%= hidden_field_tag :tweet_id, tweet.id %>
+    <%= f.submit 'Unfav', class: 'btn btn-danger btn-block' %>
+  <% end %>
+<% else %>
+  <%= form_for(tweet.favorites.build) do |f| %>
+    <%= hidden_field_tag :tweet_id, tweet.id %>
+    <%= f.submit 'fav', class: 'btn btn-primary btn-block' %>
+  <% end %>
+<% end %>
